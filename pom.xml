@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>java-cuc-sel-chrome</groupId>
+    <artifactId>java-cuc-sel-chrome</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+/* junit 4.12
+    selenium 3.6.0
+    info.cukes 1.2.5 - cucumber-java8, cucumber-junit,
+    com.typesafe 1.3.3
+    org.slf4j */
+<dependencies>
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.6.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-java8</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.typesafe/config -->
+    <dependency>
+        <groupId>com.typesafe</groupId>
+        <artifactId>config</artifactId>
+        <version>1.3.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>1.2.5</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.7.25</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>3.1.0</version>
+        <scope>test</scope>
+    </dependency>
+
+
+
+</dependencies>
+    <profiles>
+        <profile>
+            <id>cuke</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupID>org.apache.maven.plugins</groupID>
+                        <artefactID>maven-failsafe-plugin</artefactID>
+                        <version>2.21.0</version>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <systemPropertyVariables>
+                                        <!--<cucumber.options>${cucumber.opts}</cucumber.options> -->
+                                    </systemPropertyVariables>
+                                    <includes>
+                                        <include>**/*Runner.class</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+
+            </build>
+
+        </profile>
+    </profiles>
+        <build>
+            <plugins>
+                <plugin>
+                    <artefactId>maven-compiler-plugin</artefactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <testSource>1.8</testSource>
+                        <testTarget>1.8</testTarget>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupID>org.apache.maven.plugins</groupID>
+                    <artefactId>maven-dependency-plugin</artefactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artefactId>maven-surefire-plugin</artefactId>
+                    <version>2.21.0</version>
+                </plugin>
+            </plugins>
+        </build>
+
+
+</project>
